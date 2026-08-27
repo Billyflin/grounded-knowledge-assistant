@@ -1,5 +1,8 @@
 # Grounded Knowledge Assistant
 
+[![CI](https://github.com/Billyflin/grounded-knowledge-assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/Billyflin/grounded-knowledge-assistant/actions/workflows/ci.yml)
+[![Portfolio](https://img.shields.io/badge/portfolio-billyflin.dev-b9f46a)](https://billyflin.dev)
+
 A compact RAG engineering reference that retrieves evidence, generates source-grounded answers, validates citation markers, and refuses unsupported questions. It runs locally and in CI without an API key; an optional OpenAI adapter demonstrates the hosted-provider boundary.
 
 > Independent technical evidence by Billy Martínez. This is not a claim of client work, production RAG ownership, or employer experience. All included documents are synthetic and original to this repository.
@@ -76,6 +79,13 @@ The test suite covers:
 - treating prompt-like source content as data, not instructions.
 
 The evaluation script prints every case and fails unless retrieval hit@3, support/refusal accuracy, and citation validity are all 100% on the committed fixture set. These are repository-fixture metrics, not production quality metrics.
+
+| Committed-fixture check | Result |
+| --- | ---: |
+| Automated tests | 12 / 12 |
+| Retrieval hit@3 | 100% (6 / 6) |
+| Support/refusal accuracy | 100% (8 / 8) |
+| Citation validity | 100% (8 / 8) |
 
 ## Design and security decisions
 
