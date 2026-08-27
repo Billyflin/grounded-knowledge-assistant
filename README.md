@@ -104,6 +104,7 @@ Generated code is treated like an untrusted third-party contribution. Secrets, c
 - [ADR 001: provider boundary](docs/adr/001-provider-boundary.md)
 - [ADR 002: grounding controls](docs/adr/002-grounding-controls.md)
 - [ADR 003: human-verified AI-assisted delivery](docs/adr/003-human-verified-ai-delivery.md)
+- [Prototype-to-production readiness review](docs/production-readiness-review.md)
 - [Security policy and properties](SECURITY.md)
 
 The hosted answer provider sends only the question and the retrieved excerpts, sets response storage to false, tells the model to treat the delimited context as untrusted, and requires known `[S#]` markers. The server independently validates those markers before returning the answer.
@@ -115,6 +116,8 @@ Important limitations:
 - There is no authentication, tenant isolation, rate limiting, or persistent audit log.
 - Thresholds must be calibrated against representative domain data before use.
 - A production design needs quality, latency, cost, abuse, privacy, and failure-mode monitoring.
+
+The [production-readiness review](docs/production-readiness-review.md) turns those limitations into explicit approval gates across product quality, security and privacy, identity and tenant isolation, scalability and latency, cost, reliability and abuse, observability, and release safety. It deliberately records a **not approved for production** decision until representative measurements and accountable human review exist.
 
 ## Project map
 
