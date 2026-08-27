@@ -15,6 +15,7 @@ A compact RAG engineering reference that retrieves evidence, generates source-gr
 - Fail-closed behavior for weak retrieval and absent or invented citations.
 - Untrusted-context boundaries, sanitized API errors, and no browser-side secrets.
 - Repeatable retrieval hit@3, support/refusal, and citation-validity evaluation.
+- Chromium end-to-end coverage for the grounded-answer path, safe refusal, API validation, and layout overflow.
 
 ## Request flow
 
@@ -67,7 +68,7 @@ pnpm dev
 pnpm verify
 ```
 
-The command runs linting, strict type checking, unit and adversarial tests, deterministic evaluations, and the production build. CI executes the same command on pushes and pull requests.
+The command runs linting, strict type checking, unit and adversarial tests, deterministic evaluations, the production build, and Playwright against that production server. CI installs Chromium and executes the same command on pushes and pull requests.
 
 The test suite covers:
 
@@ -76,13 +77,16 @@ The test suite covers:
 - grounded answers with known citations;
 - exact refusal for unsupported questions;
 - blocking answers that invent a citation;
-- treating prompt-like source content as data, not instructions.
+- treating prompt-like source content as data, not instructions;
+- the browser-visible grounded-answer and refusal paths;
+- safe API validation headers and a no-horizontal-overflow UI check.
 
 The evaluation script prints every case and fails unless retrieval hit@3, support/refusal accuracy, and citation validity are all 100% on the committed fixture set. These are repository-fixture metrics, not production quality metrics.
 
 | Committed-fixture check | Result |
 | --- | ---: |
 | Automated tests | 12 / 12 |
+| Chromium E2E checks | 4 / 4 |
 | Retrieval hit@3 | 100% (6 / 6) |
 | Support/refusal accuracy | 100% (8 / 8) |
 | Citation validity | 100% (8 / 8) |
@@ -124,6 +128,7 @@ The [production-readiness review](docs/production-readiness-review.md) turns tho
 ```text
 app/                 Next.js UI, source pages, and POST /api/ask
 data/                synthetic operational knowledge base
+e2e/                 Playwright user-flow and API checks
 lib/rag/             chunking, retrieval, providers, gates, validation
 tests/               deterministic and adversarial test suite
 evals/               committed quality cases and metrics
