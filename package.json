@@ -1,0 +1,38 @@
+{
+  "name": "grounded-knowledge-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Source-grounded RAG reference with citations, deterministic evals and an optional OpenAI provider.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "packageManager": "pnpm@11.19.0",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "eval": "tsx evals/run.ts",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm eval && pnpm build"
+  },
+  "dependencies": {
+    "next": "16.3.3",
+    "openai": "7.7.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "26.4.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.3",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3"
+  }
+}
